@@ -1,0 +1,50 @@
+body {
+    font-size: 10pt;
+    background: black;
+    color: white;
+    margin: 0 10vw;
+    font-family: 'Courier New', Courier, monospace;
+
+    padding: 10px;
+    text-align: center;
+}
+
+#dialog, #ustory {
+    background: black;
+    color: white;
+    border: solid;
+    margin-top: 12px;
+    width: 250px;
+    height: 120px;
+    
+    padding: 8px;
+    overflow-y: scroll;
+    font-weight: bold;
+    white-space: pre-wrap;
+    outline: none;
+}
+
+#dialog, #tip {
+  visibility: hidden;
+}
+
+img {
+    width: 200px;
+    top: 10vh;
+}
+
+a {
+    color: white;
+}
+
+/* Mobile View */
+@media only screen and (max-width: 960px) {
+  #dialog {
+    width: 90vw;
+  }
+  
+  body {
+    margin: 8px;
+    padding: 2px;
+  }
+}

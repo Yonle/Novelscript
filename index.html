@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Novelscript</title>
+
+  <!-- HTML -->
+
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div id="main">
+    <h1>Novelscript</h1>
+    <p>An small engine of novel emulator.</p>
+    <input id="loadinput" type="url" placeholder="URL of the Novelscript."></input>
+    <button onclick="play()">Play.</button><br>
+    <details>
+      <summary>Or... Write your own Novelscript:</summary>
+      <textarea id="ustory" placeholder="Novelscript code here">w "Hello world."
+w "I could not move or doing anything here."
+cl
+w "I'd like to talk with someone else"
+w "But could not tell who i should talk to."
+w "I am basically stuck."
+cl
+w "Guess that's all i could say."
+w "Now it's your turn to make a story. Go on."</textarea><br>
+      <button onclick="play()">Play.</button>
+      <small><a href="novelscript_doc.txt">Novelscript API Documentation</a></small>
+    </details>
+
+    <div style="position: absolute; bottom: 14px; color: lightgray;">
+      <small><b>NOTE:</b> This program is only best running with open source novelscript instead of unknown ones. It's also best to read the scriptcode before loading.</small>
+    </div>
+  </div>
+  <img /><br>
+  <textarea id="dialog" readonly></textarea>
+  <small id="tip">Tap the dialog box to continue.</small>
+  <!-- Project -->
+  <script src="main.js"></script>
+</body>
+
+</html>
