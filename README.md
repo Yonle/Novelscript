@@ -6,7 +6,8 @@ It's syntax is based on Esoteric programming languange, Allowing it easier to wr
 Currently, It supports these features:
 - Image, Sound, Music
 - UI customization
-- Engine speed changer (Text speed, etc)
+- Modifying Engine behavior (Text speed, etc)
+- Interactive
 - Loading more than 1 novelscripts is supported,
   Allowing for long storyline.
 
