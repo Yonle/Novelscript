@@ -79,6 +79,13 @@ Supported commands & Arguments
   - add_menu "<novelscript-url>", "<buttonname>"
     Menu to add into interactive box.
 
+  - c_url "<novelscript-url>"
+    Change the current novelscript URL in Player's Browser URL box.
+
+  - refresh
+    Refresh Player's browser page.
+    This is useful after setting c_url, when needed.
+
 License
 =======
 The novelscript engine is licensed under BSD-3-Clause.

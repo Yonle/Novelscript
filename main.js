@@ -1,7 +1,7 @@
 const dialog = document.getElementById("dialog");
 const menu = document.getElementById("menu");
 const img = document.getElementsByTagName("img")[0];
-const valid_cmd = ["w", "fw", "br", "cl", "s", "set_ns", "set_tps", "load", "l_img", "h_img", "m_play", "m_stop", "set_bg", "set_color", "title", "s_play", "set_fi", "set_fo", "add_menu"];
+const valid_cmd = ["w", "fw", "br", "cl", "s", "set_ns", "set_tps", "load", "l_img", "h_img", "m_play", "m_stop", "set_bg", "set_color", "title", "s_play", "set_fi", "set_fo", "add_menu", "c_url", "refresh"];
 const m_aud = new Audio();
 const s_aud = new Audio();
 
@@ -157,6 +157,14 @@ function add_menu(ns_u, t) {
   menu.appendChild(a);
   menu.innerHTML += "<br>";
   menu.style.visibility = "visible";
+}
+
+function c_url(s_url) {
+  location.hash = "#story=" + s_url;
+}
+
+function refresh() {
+  location.reload();
 }
 
 async function panic(err) {
