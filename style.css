@@ -22,10 +22,11 @@ body {
     font-weight: bold;
     white-space: pre-wrap;
     outline: none;
+    resize: none;
 }
 
 #dialog, #tip {
-  visibility: hidden;
+    visibility: hidden;
 }
 
 img {
