@@ -14,7 +14,7 @@ body {
     color: white;
     border: solid;
     margin-top: 12px;
-    width: 250px;
+    width: 320px;
     height: 120px;
     
     padding: 8px;
@@ -30,7 +30,7 @@ body {
 }
 
 img {
-    width: 200px;
+    width: 230px;
     top: 10vh;
 }
 
