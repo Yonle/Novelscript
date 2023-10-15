@@ -1,6 +1,7 @@
 const dialog = document.getElementById("dialog");
+const menu = document.getElementById("menu");
 const img = document.getElementsByTagName("img")[0];
-const valid_cmd = ["w", "fw", "br", "cl", "s", "set_ns", "set_tps", "load", "l_img", "h_img", "m_play", "m_stop", "set_bg", "set_color", "title", "s_play", "set_fi", "set_fo"];
+const valid_cmd = ["w", "fw", "br", "cl", "s", "set_ns", "set_tps", "load", "l_img", "h_img", "m_play", "m_stop", "set_bg", "set_color", "title", "s_play", "set_fi", "set_fo", "add_menu"];
 const m_aud = new Audio();
 const s_aud = new Audio();
 
@@ -148,6 +149,16 @@ function title(title) {
   document.title = title;
 }
 
+function add_menu(ns_u, t) {
+  let a = document.createElement("a");
+  a.setAttribute("onclick", `load('${ns_u}')`);
+  a.href = location.href;
+  a.innerText = t;
+  menu.appendChild(a);
+  menu.innerHTML += "<br>";
+  menu.style.visibility = "visible";
+}
+
 async function panic(err) {
   console.error(err);
   set_ns(0.1);
@@ -179,7 +190,6 @@ async function runstory(story) {
     }).join("\n");
   console.log(story);
   console.log(code);
-
   try {
     eval("(async () => { " + code + "})();");
   } catch (err) {
@@ -188,7 +198,11 @@ async function runstory(story) {
 }
 
 async function load(p) {
+  ht();
   document.getElementById("main").style.visibility = "hidden";
+  menu.innerHTML = "";
+  menu.style.visibility = "hidden";
+
   try {
     const story = await fetch(p)
       .catch(panic)

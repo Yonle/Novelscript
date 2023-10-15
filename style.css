@@ -21,11 +21,11 @@ body {
     overflow-y: scroll;
     font-weight: bold;
     white-space: pre-wrap;
-    outline: none;
     resize: none;
+    outline: none;
 }
 
-#dialog, #tip {
+#dialog, #tip, #menu {
     visibility: hidden;
 }
 

@@ -76,6 +76,8 @@ Supported commands & Arguments
     Play a sound from <url>.
     The current sound will be overriden.
 
+  - add_menu "<novelscript-url>", "<buttonname>"
+    Menu to add into interactive box.
 
 License
 =======
