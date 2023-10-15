@@ -100,6 +100,7 @@ function h_img(wait) {
       if (op <= 0) {
         img.style.visibility = "hidden";
         if (wait) r();
+        img.src = "";
         return clearInterval(i);
       }
       op -= 0.1
