@@ -152,7 +152,7 @@ function title(title) {
 function add_menu(ns_u, t) {
   let a = document.createElement("a");
   a.setAttribute("onclick", `load('${ns_u}')`);
-  a.href = location.href;
+  a.href = location.hash;
   a.innerText = t;
   menu.appendChild(a);
   menu.innerHTML += "<br>";
