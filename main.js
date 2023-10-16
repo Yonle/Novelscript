@@ -68,6 +68,7 @@ function cl() {
 }
 
 function s(ms) {
+  ht();
   return new Promise(r => setTimeout(r, ms * 1000));
 }
 
