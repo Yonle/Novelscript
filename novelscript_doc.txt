@@ -65,6 +65,9 @@ Supported commands & Arguments
   - h_img
     Hide the front image.
 
+  - c_img "<url>"
+    Change front image souce without fadein or fadeout.
+
   - m_play "<url>"
     Play a music from <url>.
     The current music will be overriden.

@@ -94,6 +94,10 @@ async function l_img(url) {
   }, fi);
 }
 
+function c_img(url) {
+  img.src = url;
+}
+
 function h_img(wait) {
   return new Promise(r => {
     let op = 1
@@ -113,20 +117,28 @@ function h_img(wait) {
 }
 
 function m_play(url, loop = true) {
-  m_aud.loop = loop;
-  m_aud.src = url;
-  m_aud.seek = 0;
-  m_aud.play();
+  ht();
+  return new Promise(r => {
+    m_aud.loop = loop;
+    m_aud.src = url;
+    m_aud.seek = 0;
+    m_aud.play().catch(r);
+    m_aud.onplaying = r;
+  });
 }
 
 function m_stop() {
   m_aud.pause();
 }
 
-function s_play(url) {
-  s_aud.src = url;
-  s_aud.seek = 0;
-  s_aud.play();
+async function s_play(url) {
+  ht();
+  return new Promise(r => {
+    s_aud.src = url;
+    s_aud.seek = 0;
+    s_aud.play().catch(r);
+    s_aud.onplaying = r;
+  });
 }
 
 function set_bg(bg) {
