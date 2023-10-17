@@ -20,10 +20,13 @@ Supported commands & Arguments
     Making newline into dialog box.
 
   - cl
-    Clearing text in dialog box, at the same time hide the dialog box
+    Clear text in dialog box, at the same time hide the dialog box
 
   - s <seconds>
     Wait for <seconds> before executing next command
+
+  - cl_menu
+    Clear selection menu.
 
   CONFIG
   ======
