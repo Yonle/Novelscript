@@ -48,8 +48,8 @@ function w(t) {
         st();
         if (ns) curTim = setTimeout(r, ns);
         dialog.onclick = _ => {
-          r();
           clearTimeout(curTim);
+          r();
         };
         dialog.value = vt;
         return clearInterval(i);
@@ -218,6 +218,7 @@ async function panic(err) {
 async function runstory(story) {
   document.getElementById("main").style.visibility = "hidden";
   document.getElementsByTagName("details")[0].hidden = true;
+
   let code = story.split("\n")
     .map(i => {
       if (!i.length || i.startsWith(";")) return "";
