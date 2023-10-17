@@ -11,7 +11,8 @@ let fi = 70;
 let fo = 70;
 
 let vt = "";
-let curdir = ""; // Current Directory
+let curDir = ""; // Current Directory
+let curTim = null;
 
 function ht() {
   document.getElementById("tip").style.visibility = "hidden";
@@ -28,7 +29,7 @@ function fw(t) {
   dialog.scrollTo(0, dialog.scrollHeight);
   br();
   st();
-  
+
   return new Promise(r => {
     if (ns) setTimeout(r, ns);
     else dialog.onclick = r;
@@ -45,8 +46,11 @@ function w(t) {
       if (!w) {
         br();
         st();
-        if (ns) setTimeout(r, ns);
-        else dialog.onclick = r;
+        if (ns) curTim = setTimeout(r, ns);
+        dialog.onclick = _ => {
+          r();
+          clearTimeout(curTim);
+        };
         dialog.value = vt;
         return clearInterval(i);
       }
@@ -70,7 +74,7 @@ function cl() {
 
 function s(ms) {
   ht();
-  return new Promise(r => setTimeout(r, ms * 1000));
+  return new Promise(r => curTim = setTimeout(r, ms * 1000));
 }
 
 function set_ns(t) {
@@ -84,7 +88,7 @@ function set_tps(s) {
 async function l_img(url) {
   if (img.style.opacity >= 1) await h_img(true);
   let op = 0
-  img.src = curdir + url;
+  img.src = curDir + url;
   img.style.opacity = 0;
   img.style.visibility = "visible";
 
@@ -96,7 +100,7 @@ async function l_img(url) {
 }
 
 function c_img(url) {
-  img.src = curdir + url;
+  img.src = curDir + url;
 }
 
 function h_img(wait) {
@@ -112,7 +116,7 @@ function h_img(wait) {
       op -= 0.1
       img.style.opacity = op;
     }, fo);
-    
+
     if (!wait) r();
   })
 }
@@ -121,7 +125,7 @@ function m_play(url, loop = true) {
   ht();
   return new Promise(r => {
     m_aud.loop = loop;
-    m_aud.src = curdir + url;
+    m_aud.src = curDir + url;
     m_aud.seek = 0;
     m_aud.play().catch(r);
     m_aud.onplaying = r;
@@ -135,7 +139,7 @@ function m_stop() {
 async function s_play(url) {
   ht();
   return new Promise(r => {
-    s_aud.src = curdir + url;
+    s_aud.src = curDir + url;
     s_aud.seek = 0;
     s_aud.play().catch(r);
     s_aud.onplaying = r;
@@ -181,7 +185,7 @@ function cl_menu() {
 }
 
 function c_url(s_url) {
-  location.hash = "#story=" + curdir + s_url;
+  location.hash = "#story=" + curDir + s_url;
 }
 
 function refresh() {
@@ -189,7 +193,7 @@ function refresh() {
 }
 
 function cd(d) {
-  curdir = d.endsWith("/") ? d : (d + "/");
+  curDir = d.endsWith("/") ? d : (d + "/");
 }
 
 async function panic(err) {
@@ -214,7 +218,6 @@ async function panic(err) {
 async function runstory(story) {
   document.getElementById("main").style.visibility = "hidden";
   document.getElementsByTagName("details")[0].hidden = true;
-  dialog.onclick = null;
   let code = story.split("\n")
     .map(i => {
       if (!i.length || i.startsWith(";")) return "";
@@ -236,9 +239,11 @@ async function load(p) {
   document.getElementById("main").style.visibility = "hidden";
   menu.innerHTML = "";
   menu.style.visibility = "hidden";
+  dialog.onclick = null;
+  clearTimeout(curTim);
 
   try {
-    const story = await fetch(curdir + p)
+    const story = await fetch(curDir + p)
       .catch(panic)
       .then(res => res.text());
 
