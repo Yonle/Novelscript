@@ -65,8 +65,9 @@ Supported commands & Arguments
   - l_img "<url>"
     Load an front image then shows it up.
 
-  - h_img
+  - h_img <wait>
     Hide the front image.
+    <wait> is boolean value (true/false).
 
   - c_img "<url>"
     Change front image souce without fadein or fadeout.
