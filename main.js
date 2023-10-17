@@ -214,6 +214,7 @@ async function panic(err) {
 async function runstory(story) {
   document.getElementById("main").style.visibility = "hidden";
   document.getElementsByTagName("details")[0].hidden = true;
+  dialog.onclick = null;
   let code = story.split("\n")
     .map(i => {
       if (!i.length || i.startsWith(";")) return "";
