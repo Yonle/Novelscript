@@ -1,7 +1,7 @@
 const dialog = document.getElementById("dialog");
 const menu = document.getElementById("menu");
 const img = document.getElementsByTagName("img")[0];
-const valid_cmd = ["w", "fw", "br", "cl", "s", "set_ns", "set_tps", "load", "l_img", "h_img", "m_play", "m_stop", "set_bg", "set_color", "title", "s_play", "set_fi", "set_fo", "add_menu", "c_url", "refresh", "cl_menu", "c_img"];
+const valid_cmd = ["w", "fw", "br", "cl", "s", "set_ns", "set_tps", "load", "l_img", "h_img", "m_play", "m_stop", "set_bg", "set_color", "title", "s_play", "set_fi", "set_fo", "add_menu", "c_url", "refresh", "cl_menu", "c_img", "cd"];
 const m_aud = new Audio();
 const s_aud = new Audio();
 
@@ -11,6 +11,7 @@ let fi = 70;
 let fo = 70;
 
 let vt = "";
+let curdir = ""; // Current Directory
 
 function ht() {
   document.getElementById("tip").style.visibility = "hidden";
@@ -83,7 +84,7 @@ function set_tps(s) {
 async function l_img(url) {
   if (img.style.opacity >= 1) await h_img(true);
   let op = 0
-  img.src = url;
+  img.src = curdir + url;
   img.style.opacity = 0;
   img.style.visibility = "visible";
 
@@ -95,7 +96,7 @@ async function l_img(url) {
 }
 
 function c_img(url) {
-  img.src = url;
+  img.src = curdir + url;
 }
 
 function h_img(wait) {
@@ -120,7 +121,7 @@ function m_play(url, loop = true) {
   ht();
   return new Promise(r => {
     m_aud.loop = loop;
-    m_aud.src = url;
+    m_aud.src = curdir + url;
     m_aud.seek = 0;
     m_aud.play().catch(r);
     m_aud.onplaying = r;
@@ -134,7 +135,7 @@ function m_stop() {
 async function s_play(url) {
   ht();
   return new Promise(r => {
-    s_aud.src = url;
+    s_aud.src = curdir + url;
     s_aud.seek = 0;
     s_aud.play().catch(r);
     s_aud.onplaying = r;
@@ -165,7 +166,7 @@ function title(title) {
 
 function add_menu(ns_u, t) {
   let a = document.createElement("a");
-  a.setAttribute("onclick", `load('${ns_u}')`);
+  a.setAttribute("onclick", `load('${curdir + ns_u}')`);
   a.style.color = dialog.style.color;
   a.href = location.hash || "#";
   a.innerText = t;
@@ -180,11 +181,15 @@ function cl_menu() {
 }
 
 function c_url(s_url) {
-  location.hash = "#story=" + s_url;
+  location.hash = "#story=" + curdir + s_url;
 }
 
 function refresh() {
   location.reload();
+}
+
+function cd(d) {
+  curdir = d.endsWith("/") ? d : (d + "/");
 }
 
 async function panic(err) {
@@ -232,7 +237,7 @@ async function load(p) {
   menu.style.visibility = "hidden";
 
   try {
-    const story = await fetch(p)
+    const story = await fetch(curdir + p)
       .catch(panic)
       .then(res => res.text());
 

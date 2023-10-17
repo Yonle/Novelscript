@@ -84,6 +84,14 @@ Supported commands & Arguments
 
   - add_menu "<novelscript-url>", "<buttonname>"
     Menu to add into interactive box.
+    When clicked, It loads a pointed novelscript.
+    Example:
+      w "What's your favourite food?"
+      add_menu "ff_soup", "Soup"
+      ; When "Soup" is clicked, It will run 'load "ff_soup"'.
+      ; So does the following with it is provided values.
+      add_menu "ff_Steak", "Steak"
+      add_menu "ff_Omelet", "Omelet"
 
   - c_url "<novelscript-url>"
     Change the current novelscript URL in Player's Browser URL box.
@@ -91,6 +99,20 @@ Supported commands & Arguments
   - refresh
     Refresh Player's browser page.
     This is useful after setting c_url, when needed.
+
+  - cd "<dir>"
+    Change current directory to <dir>
+    Useful for shorting the usage of loading certain assets.
+
+    Example:
+      ; Without using cd
+      m_play "story/1.opus"
+      load "story/1"
+
+      ; After using cd
+      cd "story"
+      m_play "1.opus"
+      load "1"
 
 License
 =======
