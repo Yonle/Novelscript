@@ -49,6 +49,7 @@ function w(t) {
         if (ns) curTim = setTimeout(r, ns);
         dialog.onclick = _ => {
           clearTimeout(curTim);
+          dialog.onclick = null;
           r();
         };
         dialog.value = vt;
