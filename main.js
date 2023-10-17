@@ -166,7 +166,7 @@ function title(title) {
 
 function add_menu(ns_u, t) {
   let a = document.createElement("a");
-  a.setAttribute("onclick", `load('${curdir + ns_u}')`);
+  a.setAttribute("onclick", `load('${ns_u}')`);
   a.style.color = dialog.style.color;
   a.href = location.hash || "#";
   a.innerText = t;
