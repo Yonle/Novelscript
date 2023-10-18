@@ -115,6 +115,23 @@ Supported commands & Arguments
       m_play "1.opus"
       load "1"
 
+  - %js
+    Execute an JavaScript code.
+    An novelscript functions such as w could also be executed
+    inside this command.
+
+    Example:
+      w "Working...."
+      ; Here's the JavaScript code starts
+      %js
+      // Now write stuffs here.
+      alert("Hello world!");
+      %js
+      ; End of JS code.
+      ; You could also insert more %js codes.
+
+      w "Did you get that alert?"
+
 License
 =======
 The novelscript engine is licensed under BSD-3-Clause.

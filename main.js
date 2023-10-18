@@ -1,7 +1,7 @@
 const dialog = document.getElementById("dialog");
 const menu = document.getElementById("menu");
 const img = document.getElementsByTagName("img")[0];
-const valid_cmd = ["w", "fw", "br", "cl", "s", "set_ns", "set_tps", "load", "l_img", "h_img", "m_play", "m_stop", "set_bg", "set_color", "title", "s_play", "set_fi", "set_fo", "add_menu", "c_url", "refresh", "cl_menu", "c_img", "cd"];
+const valid_cmd = ["w", "fw", "br", "cl", "s", "set_ns", "set_tps", "load", "l_img", "h_img", "m_play", "m_stop", "set_bg", "set_color", "title", "s_play", "set_fi", "set_fo", "add_menu", "c_url", "refresh", "cl_menu", "c_img", "cd", "%js"];
 const m_aud = new Audio();
 const s_aud = new Audio();
 
@@ -217,6 +217,7 @@ async function panic(err) {
 }
 
 async function runstory(story) {
+  let plainJS = false;
   document.getElementById("main").style.visibility = "hidden";
   document.getElementsByTagName("details")[0].hidden = true;
 
@@ -224,8 +225,23 @@ async function runstory(story) {
     .map(i => {
       if (!i.length || i.startsWith(";")) return "";
       const a = i.split(" ");
-      if (!valid_cmd.includes(a[0])) return "";
-      return `await ${a[0]}(${a.slice(1).join(" ")});`;
+      if (!valid_cmd.includes(a[0]) && !plainJS) return "";
+      switch (plainJS) {
+        case true:
+          if (a[0] === "%js") {
+            plainJS = false;
+            return "";
+          }
+          return i;
+          break;
+        case false:
+          if (a[0] === "%js") {
+            plainJS = true;
+            return "";
+          }
+          return `await ${a[0]}(${a.slice(1).join(" ")});`;
+          break;
+      }
     }).join("\n");
   console.log(story);
   console.log(code);
