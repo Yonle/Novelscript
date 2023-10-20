@@ -132,6 +132,22 @@ Supported commands & Arguments
 
       w "Did you get that alert?"
 
+  Other
+  =====
+  - t_s "<text>"
+    What small text that you would like to show after the big text?
+
+  - t "<text>"
+    What to write in a bigger text?
+
+  - d "<text>"
+    After the bigger text, What's the text for small one?
+
+  - cl_t   -
+    cl_d   -  You know what these three command does already.
+    cl_t_s -
+
+
 License
 =======
 The novelscript engine is licensed under BSD-3-Clause.

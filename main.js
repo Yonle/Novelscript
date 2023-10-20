@@ -1,7 +1,10 @@
 const dialog = document.getElementById("dialog");
 const menu = document.getElementById("menu");
 const img = document.getElementsByTagName("img")[0];
-const valid_cmd = ["w", "fw", "br", "cl", "s", "set_ns", "set_tps", "load", "l_img", "h_img", "m_play", "m_stop", "set_bg", "set_color", "title", "s_play", "set_fi", "set_fo", "add_menu", "c_url", "refresh", "cl_menu", "c_img", "cd", "%js"];
+const el_t = document.getElementById("t");
+const el_d = document.getElementById("d");
+const el_t_s = document.getElementById("t_s");
+const valid_cmd = ["w", "fw", "br", "cl", "s", "set_ns", "set_tps", "load", "l_img", "h_img", "m_play", "m_stop", "set_bg", "set_color", "title", "s_play", "set_fi", "set_fo", "add_menu", "c_url", "refresh", "cl_menu", "c_img", "cd", "%js", "t", "d", "cl_t", "cl_d", "t_s", "cl_t_s"];
 const m_aud = new Audio();
 const s_aud = new Audio();
 
@@ -62,6 +65,21 @@ function w(t) {
   });
 }
 
+function t(s) {
+  el_t.style.visibility = "visible";
+  el_t.innerText = s;
+}
+
+function d(s) {
+  el_d.style.visibility = "visible";
+  el_d.innerText = s;
+}
+
+function t_s(s) {
+  el_t_s.style.visibility = "visible";
+  el_t_s.innerText = s;
+}
+
 function br() {
   vt += "\n";
 }
@@ -70,6 +88,24 @@ function cl() {
   vt = "";
   dialog.value = "";
   dialog.style.visibility = "hidden";
+  ht();
+}
+
+function cl_t() {
+  el_t.style.visibility = "hidden";
+  el_t.innerText = "";
+  ht();
+}
+
+function cl_d() {
+  el_d.style.visibility = "hidden";
+  el_d.innerText = "";
+  ht();
+}
+
+function cl_t_s() {
+  el_t_s.style.visibility = "hidden";
+  el_t_s.innerText = "";
   ht();
 }
 
@@ -121,6 +157,7 @@ function c_img(url) {
 }
 
 function h_img(wait) {
+  ht();
   return new Promise(r => {
     let op = 1
     let i = setInterval(_ => {

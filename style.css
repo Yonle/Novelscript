@@ -25,8 +25,12 @@ body {
     outline: none;
 }
 
-#dialog, #tip, #menu {
+#dialog, #tip, #menu, #t, #d, #t_s {
     visibility: hidden;
+}
+
+#t, #d, #t_s {
+    margin: 0;
 }
 
 img {
