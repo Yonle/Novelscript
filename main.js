@@ -115,6 +115,9 @@ async function l_img(url) {
 
 function c_img(url) {
   img.src = curDir + url;
+  return new Promise(r => {
+    img.onload = r;
+  });
 }
 
 function h_img(wait) {
