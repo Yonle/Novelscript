@@ -86,18 +86,31 @@ function set_tps(s) {
   tps = s;
 }
 
+function f_img_fadeIn(res) {
+  let op = 0;
+  let i = setInterval(_ => {
+    if (op >= 1) {
+      res();
+      return clearInterval(i);
+    }
+    op += 0.1
+    img.style.opacity = op;
+  }, fi);
+}
+
 async function l_img(url) {
   if (img.style.opacity >= 1) await h_img(true);
-  let op = 0
   img.src = curDir + url;
   img.style.opacity = 0;
   img.style.visibility = "visible";
 
-  let i = setInterval(_ => {
-    if (op >= 1) return clearInterval(i);
-    op += 0.1
-    img.style.opacity = op;
-  }, fi);
+  // Once image is loaded, Call fadein then resolve promise.
+  return new Promise(r => {
+    img.onload = _ => {
+      r();
+      f_img_fadeIn();
+    }
+  });
 }
 
 function c_img(url) {
