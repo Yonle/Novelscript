@@ -22,6 +22,7 @@ function ht() {
 }
 
 function st() {
+  if (ns) return;
   document.getElementById("tip").style.visibility = "visible";
 }
 
