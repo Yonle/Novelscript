@@ -23,6 +23,7 @@ body {
     white-space: pre-wrap;
     resize: none;
     outline: none;
+    scrollbar-width: none;
 }
 
 #dialog, #tip, #menu, #t, #d, #t_s {
